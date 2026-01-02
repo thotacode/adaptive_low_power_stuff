@@ -3,16 +3,16 @@ module perceptron(
     output reg predict
 );
 
-// ----- PASTE YOUR VALUES -----
+// ------------VALUES------------
 parameter signed W0 = 80;
-parameter signed W1 = 80;
-parameter signed W2 = 64;
-parameter signed W3 = 64;
-parameter signed W4 = 64;
-parameter signed W5 = 112;
+parameter signed W1 = 96;
+parameter signed W2 = 80;
+parameter signed W3 = 112;
+parameter signed W4 = 80;
+parameter signed W5 = 80;
 parameter signed W6 = 80;
 parameter signed W7 = 96;
-parameter signed BIAS = -240;
+parameter signed BIAS = -304;
 // -----------------------------
 
 integer sum;
