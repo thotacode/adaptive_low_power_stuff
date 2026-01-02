@@ -1,15 +1,1 @@
-🧠 Neural-Gated Adaptive Core ControllerSmart Power Management for Next-Gen ProcessorsAchievement: Demonstrated 59.24% Dynamic Power Reduction using Perceptron-based workload prediction.🚩 The ProblemModern processors waste significant energy by clocking functional units even when they are idle. Traditional "sleep modes" are reactive—they wait for the system to stop before shutting down, wasting power during the wait. Furthermore, waking up takes time, causing system lag.💡 The SolutionWe implemented an ML-Driven Adaptive Core Architecture. Instead of a simple timeout, our system uses a Perceptron Neural Network to predict future workload based on history.High Load Predicted? $\rightarrow$ Activates all 5 Logical Cores (Performance Mode).Low Load Predicted? $\rightarrow$ Gates 4 "Worker" Cores, running only the "Master" Core (Efficiency Mode).This ensures zero stalls (thanks to the Always-On Master) while maximizing power efficiency.⚙️ ArchitectureThe system consists of four main Verilog modules:history_buffer.v: Tracks the last 8 cycles of workload activity.perceptron.v: A lightweight neural network that calculates a weighted sum to predict the next state.power_controller.v: The "Brain" that manages clock domains. It includes Hysteresis Logic to prevent clock glitches and rapid toggling.dummy_alu.v: Simulates the processing cores (1 Master + 4 Workers).📊 Results & PerformanceWe ran a simulation with bursty traffic, long idle periods, and random noise. The system successfully scaled active cores from 5 down to 1.Simulation OutputPlaintext===================================================
-             POWER EFFICIENCY REPORT
-===================================================
-Total Toggles (Unoptimized System) : 1445
-Total Toggles (Your Adaptive System) : 589
----------------------------------------------------
-SWITCHING REDUCTION                : 856 toggles
-ESTIMATED POWER SAVINGS            : 59.24 %
-===================================================
-Adaptive Behavior LogTime 20: Burst detected $\rightarrow$ 5 Cores Active (Max Performance).Time 375k: Idle detected $\rightarrow$ 1 Core Active (Max Efficiency).Time 930k: Prediction Error $\rightarrow$ 1 Core Active (System slows but does not stall).🚀 How to RunPrerequisites: Icarus Verilog and GTKWave.Clone the repository:Bashgit clone https://github.com/yourusername/adaptive-core-ml.git
-cd adaptive-core-ml
-Compile the Verilog files:Bashiverilog -o system.vvp tb.v power_controller.v perceptron.v history_buffer.v dummy_alu.v switch_counter.v
-Run the simulation:Bashvvp system.vvp
-This will print the Power Efficiency Report to your console.View the Waveforms:Bashgtkwave wave.vcd
-🏆 Key FeaturesFault Tolerance: The "Master Core" architecture ensures the OS never crashes, even if the ML model makes a wrong prediction.Glitch-Free Gating: Uses Latch-based Integrated Clock Gating (ICG) to prevent clock slivers.Scalable: The logic can be easily expanded to control dozens of cores.👥 Team[Your Name] - RTL Design & Logic[Teammate Name] - Testbench & Verification[Teammate Name] - Documentation & AnalysisBuilt for [Hackathon Name] 2026.
+## iverilog implementation
